@@ -1,1 +1,31 @@
-<paste log output from Kubernetes-mediated prediction, here>
+^Cubuntu:~/environment/ml-kubernetes-p4 (master) $ ./run_kubernetes.sh 
+Error from server (AlreadyExists): pods "mlappp4" already exists
+NAME                        READY   STATUS    RESTARTS   AGE
+mlappp4                     1/1     Running   0          2m10s
+my-mlapp-844d66bf6b-f7n54   1/1     Running   0          64s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+
+
+------------------------------------------------------------
+ubuntu:~/environment/ml-kubernetes-p4 (master) $ kubectl logs mlappp4
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 231-779-307
+[2021-08-16 17:20:40,065] INFO in app: JSON payload: 
+{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
+[2021-08-16 17:20:40,081] INFO in app: DataFrame Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-08-16 17:20:40,092] INFO in app: Scaling Payload: 
+   CHAS     RM    TAX  PTRATIO      B  LSTAT
+0     0  6.575  296.0     15.3  396.9   4.98
+[2021-08-16 17:20:40,096] INFO in app: Prediction Detail: [20.35373177134412]
+127.0.0.1 - - [16/Aug/2021 17:20:40] "POST /predict HTTP/1.1" 200 -
